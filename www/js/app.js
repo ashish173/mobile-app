@@ -18,11 +18,55 @@ angular.module('starter', ['ionic'])
   });
 })
 
-.controller('ListController', ['$scope', '$http', '$q',
-  function ($scope, $http, $q) {
-    // pull data to populate data
-    pullData();  // it returns a promise
+.config(function($stateProvider, $urlRouterProvider){
+  $stateProvider
+    .state('tabs', {
+      url: '/tab',
+      abstract: true,
+      templateUrl: 'templates/tabs.html'
+    })
 
+    .state('tabs.list', {
+      url: '/list',
+      views: {
+        'list-tab' : {
+          templateUrl: 'templates/list.html',
+          controller: 'ListController'
+        }
+      }
+    })
+
+    .state('tabs.detail', {
+      url: '/list/:aId',
+      views: {
+        'list-tab' : {
+          templateUrl: 'templates/detail.html',
+          controller: 'ListController'
+        }
+      }
+    })
+
+    .state('tabs.home', {
+      url: '/home',
+      views: {
+        'home-tab' : {
+          templateUrl: 'templates/home.html'
+        }
+      }
+    })
+
+
+  // Default route
+  $urlRouterProvider.otherwise('/tab/home');
+})
+
+.controller('ListController',
+  ['$scope', '$http', '$q', '$state',
+  function ($scope, $http, $q, $state) {
+    // pull data to populate data
+    $scope.whichArtist = $state.params.aId;
+    pullData();  // it returns a promise
+    console.log('which artist', $scope.whichArtist);
     $scope.moveItem = function(item, fromIndex, toIndex) {
       $scope.artists.splice(fromIndex, 1);
       $scope.artists.splice(toIndex, 0, item);
