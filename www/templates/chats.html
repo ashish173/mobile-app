@@ -28,23 +28,12 @@
     show-reorder="data.showReorder"
     show-delete="data.showDelete">
     <ion-item ng-class="{'star': item.star}"
-      ng-repeat="item in reservations | filter: query"
+      ng-repeat="item in artists | filter: query"
       class="item-thumbnail-left item-text-wrap item-icon-right"
-      href="#/tab/list/{{item.id}}">
-        <img ng-src="{{item.user.photo_url}}" alt="{{ item.name }} Photo">
-        <h2>{{ item.user.name.first + item.user.name.last }}</h2>
-        <div class="row">
-          <div class="col-50">
-            <h3>{{ item.restaurant_name }}</h3>
-          </div>
-          <div class="col-25 col-offset-10 icon-right">
-            <a ng-if="item.gender_pref=='male'" class="button icon-left ion-man button-clear button-dark"></a>
-            <a ng-if="item.gender_pref=='female'" class="button icon-left ion-woman button-clear button-dark"></a>
-          </div>
-        </div>
-
-
-        <p> {{ item.proposition | limitTo: 100 }}{{ item.bio.length > 150 ? '&hellip;': ''}} </p>
+      href="#/tab/list/{{item.shortname}}">
+        <img ng-src="img/{{item.shortname}}_tn.jpg" alt="{{ item.name }} Photo">
+        <h2>{{ item.name }}</h2>
+        
         <!-- Star button -->
         <button
           class="button button-clear icon ion-star button-assertive"
