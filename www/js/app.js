@@ -18,12 +18,10 @@ angular.module('starter', ['ionic'])
   });
 })
 
-.controller('ListController', ['$scope', '$http', function ($scope, $http) {
-  $http.get('js/data.json')
-    .success(function(data){
-      console.log('Data is ', data);
-      $scope.artists = data.artists;
-    });
+.controller('ListController', ['$scope', '$http', '$q',
+  function ($scope, $http, $q) {
+    // pull data to populate data
+    pullData();  // it returns a promise
 
     $scope.moveItem = function(item, fromIndex, toIndex) {
       $scope.artists.splice(fromIndex, 1);
@@ -36,5 +34,25 @@ angular.module('starter', ['ionic'])
 
     $scope.toggleStar = function(item){
       item.star = !item.star;
+    }
+
+    $scope.doRefresh = function(){
+      var response = pullData();
+      response.then(function(){
+        $scope.$broadcast('scroll.refreshComplete');
+      });
+    }
+
+    function pullData(){
+      var deferred = $q.defer();
+      $http.get('js/data.json')
+        .success(function(data){
+          $scope.artists = data.artists;
+          deferred.resolve('data recieved');
+        })
+        .error(function(){
+          deferred.reject('No response');
+        });
+      return deferred.promise;
     }
 }])

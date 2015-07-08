@@ -47,6 +47,9 @@
 
 
       <ion-content class="has-subheader">
+        <ion-refresher on-refresh="doRefresh()">
+        </ion-refresher>
+        <!-- List starts here-->
         <ion-list
           show-reorder="data.showReorder"
           show-delete="data.showDelete">
