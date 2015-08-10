@@ -1,13 +1,17 @@
 <ion-tabs class="tabs-icon-top tabs-dark">
-  <ion-tab title="Add reservation" icon="ion-ios-compose-outline"
+  <ion-tab title="" icon="ion-ios-compose-outline"
     href="#/tab/home">
     <ion-nav-view name="home-tab"></ion-nav-view>
   </ion-tab>
-  <ion-tab title="Reservations" icon="ion-beer"
+  <ion-tab title="" icon="ion-beer"
     href="#/tab/list">
     <ion-nav-view name="list-tab"></ion-nav-view>
   </ion-tab>
-  <ion-tab title="Messages" badge="2" badge-style="badge-assertive" icon="ion-chatbubbles"
+  <ion-tab title="" badge="2" badge-style="badge-assertive" icon="ion-ios-star-outline"
+    ui-sref="tabs.chat">
+    <ion-nav-view name="list-messages"></ion-nav-view>
+  </ion-tab>
+  <ion-tab title="" badge="2" badge-style="badge-assertive" icon="ion-chatbubbles"
     ui-sref="tabs.chat">
     <ion-nav-view name="list-messages"></ion-nav-view>
   </ion-tab>
