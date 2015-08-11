@@ -7,9 +7,13 @@
       var remoteDataLink = 'http://beta.json-generator.com/api/json/get/FDUuC2J';
       console.log('in list controller');
 
+      $scope.data = {showDelete: false, showReorder: false};
+
       $scope.whichArtist = $state.params.aId;
       pullData();  // it returns a promise
       console.log('which artist', $scope.whichArtist);
+
+
       $scope.moveItem = function(item, fromIndex, toIndex) {
         $scope.artists.splice(fromIndex, 1);
         $scope.artists.splice(toIndex, 0, item);
@@ -34,15 +38,24 @@
         var deferred = $q.defer();
         $http.get(remoteDataLink)
           .success(function(data){
-            console.log('data fromk server', data);
+            console.log('data from server', data);
             $scope.reservations = data;
             deferred.resolve('data recieved');
+            showDetail();
           })
           .error(function(){
             deferred.reject('No response');
           });
         return deferred.promise;
       }
+
+      function showDetail(){
+        angular.forEach($scope.reservations, function(obj){
+          if(obj['id'] == $scope.whichArtist){
+            $scope.reservation = obj;
+          }
+        });
+      };
   }])
 
 })();

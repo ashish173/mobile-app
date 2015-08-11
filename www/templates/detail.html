@@ -1,17 +1,47 @@
-<ion-header class="bar-dark">
-  <h2 class="title">Reservation detail</h2>
-</ion-header>
-
-<ion-view>
+<ion-view title="Reservation detail">
   <ion-content>
-    <ion-list class="list-inset">
-      <ion-item class="item-text-wrap"
-        ng-repeat="item in artists | filter: { shortname: whichArtist }">
-        <img ng-src="img/{{item.shortname}}_tn.jpg" alt="{{ item.name }} Photo">
-        <h2>{{ item.name }}</h2>
-        <h3>{{ item.reknown }}</h3>
-        <p> {{ item.bio }} </p>
-      </ion-item>
-    </ion-list>
-  </ion-conten>
+    <div class="list card">
+      <div class="item item-thumbnail-left item-avatar">
+        <img ng-src="{{reservation.user.photo_url}}" alt="{{ reservation.user.name.first + reservation.user.name.last }} Photo">
+        <div class="padding-vertical">
+          <h2>{{ reservation.user.name.first + ' ' + reservation.user.name.last }}</h2>
+          <p>Age 23,Virgo</p>
+        </div>
+      </div>
+
+      <ion-list class="list-inset">
+        <ion-item class="item-text-wrap">
+          <div class="item item-icon-left">
+            <i class="icon ion-ios-location-outline energized"></i>
+            {{ reservation.restaurant_name }}
+          </div>
+
+          <div class="item item-icon-left">
+            <i class="icon ion-radio-waves balanced"></i>
+            {{reservation.proposition | limitTo: 100 }}{{ reservation.bio.length > 150 ? '&hellip;': ''}}
+          </div>
+
+          <div class="item item-icon-left">
+            <i class="icon ion-ios-time-outline positive"></i>
+            {{reservation.time_of_reservation | date}}
+          </div>
+
+          <div class="item item-icon-left">
+            <i ng-if="reservation.gender_pref == 'male'" class="icon ion-man positive"></i>
+            <i ng-if="reservation.gender_pref == 'female'" class="icon ion-woman positive"></i>
+            {{reservation.gender_pref}}
+          </div>
+        </ion-item>
+        <ion-item>
+          <div class="button-bar">
+            <button class="button button-outline button-positive icon ion-ios-chatbubble-outline"> Comment</button>
+            <button class="button button-outline button-positive icon ion-ios-paperplane-outline button-right"> Request</button>
+          </div>
+        </ion-item>
+      </ion-list>
+    </div>
+  </ion-content>
+
+
+
 </ion-view>

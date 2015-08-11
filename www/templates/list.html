@@ -1,69 +1,71 @@
-<ion-header-bar class="bar-dark">
-  <button
-    class="button button-icon ion-minus-circled"
-    ng-click="data.showDelete = !data.showDelete; data.showReorder = false;">
-  </button>
-  <h1 class="title">Eatmates</h1>
-  <!-- Toggle -->
-  <button
-    class="button button-icon ion-navicon"
-    ng-click="data.showReorder = !data.showReorder; data.showDelete = false;">
-  </button>
-</ion-header-bar>
+<ion-view title='Eatmates'>
+  <!-- <ion-nav-buttons side='primary'>
+    <button
+      class="button button-icon ion-minus-circled"
+      ng-click="data.showDelete = !data.showDelete; data.showReorder = false;">
+    </button>
+  </ion-nav-buttons>
+  <ion-nav-buttons side="secondary">
+    <button
+      class="button button-icon ion-navicon"
+      ng-click="data.showReorder = !data.showReorder; data.showDelete = false;">
+    </button> -->
+  </ion-nav-buttons>
 
-<div class="bar bar-subheader
-  item-input-inset bar-light">
-  <label class="item-input-wrapper">
-    <i class="icon ion-search placeholder-icon"></i>
-    <input type="search" ng-model="query" placeholder="Search">
-  </label>
-</div>
+  <div class="bar bar-subheader
+    item-input-inset bar-light">
+    <label class="item-input-wrapper">
+      <i class="icon ion-search placeholder-icon"></i>
+      <input type="search" ng-model="query" placeholder="Search">
+    </label>
+  </div>
 
 
-<ion-content class="has-subheader">
-  <ion-refresher on-refresh="doRefresh()">
-  </ion-refresher>
-  <!-- List starts here-->
-  <ion-list
-    show-reorder="data.showReorder"
-    show-delete="data.showDelete">
-    <ion-item ng-class="{'star': item.star}"
-      ng-repeat="item in reservations | filter: query"
-      class="item-thumbnail-left item-text-wrap item-icon-right"
-      href="#/tab/list/{{item.id}}">
-        <img ng-src="{{item.user.photo_url}}" alt="{{ item.name }} Photo">
-        <h2>{{ item.user.name.first + item.user.name.last }}</h2>
-        <div class="row">
-          <div class="col-50">
-            <h3>{{ item.restaurant_name }}</h3>
+  <ion-content class="has-subheader">
+    <ion-refresher on-refresh="doRefresh()">
+    </ion-refresher>
+    <!-- List starts here-->
+    <ion-list
+      show-reorder="data.showReorder"
+      show-delete="data.showDelete">
+      <ion-item ng-class="{'star': item.star}"
+        ng-repeat="item in reservations | filter: query"
+        class="item-thumbnail-left item-text-wrap item-icon-right"
+        href="#/tab/list/{{item.id}}">
+          <img ng-src="{{item.user.photo_url}}" alt="{{ item.name }} Photo">
+          <h2>{{ item.user.name.first + item.user.name.last }}</h2>
+          <div class="row">
+            <div class="col-50">
+              <h3>{{ item.restaurant_name }}</h3>
+            </div>
+            <div class="col-25 col-offset-10 icon-right">
+              <a ng-if="item.gender_pref=='male'" class="button icon-left ion-man button-clear button-dark"></a>
+              <a ng-if="item.gender_pref=='female'" class="button icon-left ion-woman button-clear button-dark"></a>
+            </div>
           </div>
-          <div class="col-25 col-offset-10 icon-right">
-            <a ng-if="item.gender_pref=='male'" class="button icon-left ion-man button-clear button-dark"></a>
-            <a ng-if="item.gender_pref=='female'" class="button icon-left ion-woman button-clear button-dark"></a>
-          </div>
-        </div>
 
 
-        <p> {{ item.proposition | limitTo: 100 }}{{ item.bio.length > 150 ? '&hellip;': ''}} </p>
-        <!-- Star button -->
-        <button
-          class="button button-clear icon ion-star button-assertive"
-          ng-click="toggleStar(item)"
-          ng-show="item.star">
-        </button>
-        <!-- star option on slide -->
-        <ion-option-button
-          class="button-dark"
-          ng-click="toggleStar(item)">
-          <i class="icon ion-star"></i>
-        </ion-option-button>
-        <ion-delete-button class="ion-minus-circled"
-          ng-click="onItemDelete(item)">
-        </ion-delete-button>
-        <ion-reorder-button class="ion-navicon"
-          on-reorder="moveItem(item, $fromIndex, $toIndex)">
-        </ion-reorder-button>
-    </ion-item>
-  </ion-list>
+          <p> {{ item.proposition | limitTo: 100 }}{{ item.bio.length > 150 ? '&hellip;': ''}} </p>
+          <!-- Star button -->
+          <button
+            class="button button-clear icon ion-star button-assertive"
+            ng-click="toggleStar(item)"
+            ng-show="item.star">
+          </button>
+          <!-- star option on slide -->
+          <ion-option-button
+            class="button-dark"
+            ng-click="toggleStar(item)">
+            <i class="icon ion-star"></i>
+          </ion-option-button>
+          <ion-delete-button class="ion-minus-circled"
+            ng-click="onItemDelete(item)">
+          </ion-delete-button>
+          <ion-reorder-button class="ion-navicon"
+            on-reorder="moveItem(item, $fromIndex, $toIndex)">
+          </ion-reorder-button>
+      </ion-item>
+    </ion-list>
 
-</ion-content>
+  </ion-content>
+</ion-view>

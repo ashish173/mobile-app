@@ -41,6 +41,7 @@ angular.module('starter', ['ionic'])
       views: {
         'list-tab' : {
           templateUrl: 'templates/detail.html',
+          //template: '<p> hello </p>',
           controller: 'ListController'
         }
       }
