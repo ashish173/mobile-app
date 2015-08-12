@@ -30,7 +30,7 @@
     <ion-item ng-class="{'star': item.star}"
       ng-repeat="item in artists | filter: query"
       class="item-thumbnail-left item-text-wrap item-icon-right"
-      href="#/tab/list/{{item.shortname}}">
+      href="#/tab/chat_detail/{{item.shortname}}">
         <img ng-src="img/{{item.shortname}}_tn.jpg" alt="{{ item.name }} Photo">
         <h2>{{ item.name }}</h2>
         

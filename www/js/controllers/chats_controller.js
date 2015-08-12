@@ -2,10 +2,11 @@
   angular.module('starter')
   .controller('ChatsController', ChatsController);
 
-  ChatsController.$inject = ['$scope', '$state', '$q', '$http'];
-  function ChatsController($scope, $state, $q, $http){
+  ChatsController.$inject = ['$scope', '$state', '$q', '$http', '$stateParams'];
+  function ChatsController($scope, $state, $q, $http, $stateParams){
     var remoteDataLink = 'http://beta.json-generator.com/api/json/get/FDUuC2J';
-
+    console.log('in chats controller params ', $stateParams.uid);
+    
     pullData();
     pullJsonData();
 

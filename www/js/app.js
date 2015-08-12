@@ -59,8 +59,20 @@ angular.module('starter', ['ionic'])
     .state('tabs.chat', {
       url: '/chats',
       views: {
-        'list-messages': {
+        'list-detail-messages': {
           templateUrl: 'templates/chats.html',
+          controller: 'ChatsController'
+        }
+      }
+    })
+
+    // chat detail tab
+    .state('tabs.chatDetail', {
+      url: '/chat_detail/:uid',
+      // params: { uid: null },
+      views: {
+        'list-detail-messages': {
+          templateUrl: 'templates/chat_detail.html',
           controller: 'ChatsController'
         }
       }
