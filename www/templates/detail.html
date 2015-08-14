@@ -2,9 +2,10 @@
   <ion-content>
     <div class="list card">
       <div class="item item-thumbnail-left item-avatar">
-        <img ng-src="{{reservation.user.photo_url}}" alt="{{ reservation.user.name.first + reservation.user.name.last }} Photo">
+        <!-- <img ng-src="{{reservation.user.photo_url}}" alt="{{ reservation.user.name.first + reservation.user.name.last }} Photo"> -->
+        <img ng-src="http://placehold.it/100x100" alt="{{ reservation.user.name.first + reservation.user.name.last }} Photo">
         <div class="padding-vertical">
-          <h2>{{ reservation.user.name.first + ' ' + reservation.user.name.last }}</h2>
+          <h2>{{ reservation.user.name }}</h2>
           <p>Age 23,Virgo</p>
         </div>
       </div>
@@ -27,14 +28,14 @@
           </div>
 
           <div class="item item-icon-left">
-            <i ng-if="reservation.gender_pref == 'male'" class="icon ion-man positive"></i>
-            <i ng-if="reservation.gender_pref == 'female'" class="icon ion-woman positive"></i>
+            <i ng-if="reservation.gender_pref == 'male'" class="icon ion-man calm"></i>
+            <i ng-if="reservation.gender_pref == 'female'" class="icon ion-woman assertive"></i>
             {{reservation.gender_pref}}
           </div>
         </ion-item>
         <ion-item>
           <div class="button-bar">
-            <button class="button button-outline button-positive icon ion-ios-chatbubble-outline"> Comment</button>
+            <button class="button button-outline button-positive icon ion-ios-chatbubble-outline" ng-click='openModal()'> Comment</button>
             <button class="button button-outline button-positive icon ion-ios-paperplane-outline button-right"> Request</button>
           </div>
         </ion-item>

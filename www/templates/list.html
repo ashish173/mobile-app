@@ -30,28 +30,24 @@
       show-delete="data.showDelete">
       <ion-item ng-class="{'star': item.star}"
         ng-repeat="item in reservations | filter: query"
-        class="item-thumbnail-left item-text-wrap item-icon-right"
+        class="item-thumbnail-left item-text-wrap"
         href="#/tab/list/{{item.id}}">
-          <img ng-src="{{item.user.photo_url}}" alt="{{ item.name }} Photo">
-          <h2>{{ item.user.name.first + item.user.name.last }}</h2>
-          <div class="row">
-            <div class="col-50">
-              <h3>{{ item.restaurant_name }}</h3>
-            </div>
-            <div class="col-25 col-offset-10 icon-right">
-              <a ng-if="item.gender_pref=='male'" class="button icon-left ion-man button-clear button-dark"></a>
-              <a ng-if="item.gender_pref=='female'" class="button icon-left ion-woman button-clear button-dark"></a>
-            </div>
-          </div>
-
+          <!-- <img ng-src="{{item.user.photo_url}}" alt="{{ item.name }} Photo"> -->
+          <img ng-src="http://placehold.it/100x100" alt="{{ item.name }} Photo">
+          <h2>{{ item.user.name}}</h2>
+          <h3><i class='ion-android-restaurant assertive'></i> {{ item.restaurant_name }}</h3>
+          <i ng-if="item.gender_pref=='male'" class="button-icon icon ion-man calm"></i>
+          <i ng-if="item.gender_pref=='female'" class="button-icon icon ion-woman assertive"></i>
+          <i class="button-icon icon ion-wineglass energized"></i>
 
           <p> {{ item.proposition | limitTo: 100 }}{{ item.bio.length > 150 ? '&hellip;': ''}} </p>
           <!-- Star button -->
-          <button
+          <a
             class="button button-clear icon ion-star button-assertive"
             ng-click="toggleStar(item)"
-            ng-show="item.star">
-          </button>
+            ng-show="item.star"
+            >
+          </a>
           <!-- star option on slide -->
           <ion-option-button
             class="button-dark"
