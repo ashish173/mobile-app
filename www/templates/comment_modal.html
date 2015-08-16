@@ -11,7 +11,7 @@
     <ion-list id="comments" ng-repeat='comment in reservation.comments | orderBy: "-created_at" | limitTo: 5'>
       <ion-item>
         <div class="item-avatar">
-          <img ng-src="http://placehold.it/50x50" alt="{{ reservation.user.name.first + reservation.user.name.last }} Photo">
+          <img ng-src="http://lorempixel.com/50/50/people/" alt="{{ reservation.user.name.first + reservation.user.name.last }} Photo">
           <div class="padding-vertical">
             {{comment.message}}
             <p>{{comment.created_at | date}}</p>
