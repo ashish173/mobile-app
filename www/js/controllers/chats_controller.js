@@ -5,7 +5,10 @@
   ChatsController.$inject = ['$scope', '$state', '$q', '$http', '$stateParams'];
   function ChatsController($scope, $state, $q, $http, $stateParams){
     var remoteDataLink = 'http://beta.json-generator.com/api/json/get/FDUuC2J';
-    console.log('in chats controller params ', $stateParams.uid);
+    var uId = $stateParams.uid;
+    // if uId is present then do all the setup for quick blox
+    // actually later do it on hitting chats list page
+
     
     pullData();
     pullJsonData();
